@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Teste Openlayers</title>
+    <script src="resources/Openlayers.js"></script>  
+    <script src="Geometrias.js"></script> 
+    <link rel="stylesheet" href="resources/style.css" type="text/css">
+    <link rel="stylesheet" href="resources/theme/default/style.css" type="text/css">
+    <script type="text/javascript">
+        var map;
+        function init(){
+            map = new OpenLayers.Map('map');
+
+            var graphic = new OpenLayers.Layer.Image(
+                'Condominio',
+                'images/MoradasII.png',
+                new OpenLayers.Bounds(-180, -180, 180, 180),
+                new OpenLayers.Size(650, 650),
+                {numZoomLevels: 6}
+            );
+
+	    var busyStyle = new OpenLayers.StyleMap({
+		    "default": new OpenLayers.Style({
+			fillColor: "#FF0000",	
+			strokeColor: "#339950",
+		        strokeOpacity: 0.6,
+			fillOpacity: 0.8,
+		        strokeWidth: 1,
+		    })
+		});
+
+	    var style = new OpenLayers.StyleMap({
+		    "default": new OpenLayers.Style({
+			fillColor: "#00FF00",	
+			strokeColor: "#339950",
+		        strokeOpacity: 0.6,
+			fillOpacity: 0.8,
+		        strokeWidth: 1,
+		    }),
+		    "select": new OpenLayers.Style({
+			fillColor: "#0000FF",
+		    })
+		});
+
+		
+		vectorLayer = new OpenLayers.Layer.Vector("Vector layer", {styleMap: style});
+		busyLayer = new OpenLayers.Layer.Vector("Busy layer", {styleMap: busyStyle});
+
+		var deleteFeature = new OpenLayers.Control.SelectFeature( vectorLayer, {
+		        clickout: false, toggle: false,
+		        multiple: true, hover: false,
+		        toggleKey: "ctrlKey", 
+		        multipleKey: "shiftKey",
+		        box: true
+		    });
+		
+		var selectFeature = new OpenLayers.Control.SelectFeature(vectorLayer,
+                    {
+                        clickout: true, toggle: false,
+                        multiple: false, hover: false,
+                        toggleKey: "ctrlKey", // ctrl key removes from selection
+                        multipleKey: "shiftKey", // shift key adds to selection
+                        box: false
+                    });
+		    
+    		vectorLayer.events.on({'featureselected': function(feature) {
+                    	alert(feature.feature.attributes.vaga);
+                     }
+		});   
+		
+		map.addLayers([vectorLayer, busyLayer, graphic]);
+
+		drawControls = {
+                    select: selectFeature
+                };
+		
+		wkt = new OpenLayers.Format.WKT();
+		
+		var features = makeOverLayerFeatures(wkt);		
+		vectorLayer.addFeatures(features);
+		
+		for(var key in drawControls) {
+		    map.addControl(drawControls[key]);
+		}
+		selectFeature.activate();
+        map.zoomToMaxExtent();
+        }
+	function toggleControl(element) {
+                for(key in drawControls) {
+                    var control = drawControls[key];
+                    if(element.value == key && element.checked) {
+                        control.activate();
+                    } else {
+                        control.deactivate();
+                    }
+                }
+            }
+
+	document.changeToBusy = function changeToBusy(vagas){
+		var feature = vectorLayer.getFeaturesByAttribute('vaga', vagas);
+		busyLayer.addFeatures(feature);
+		vectorLayer.removeFeatures(feature);
+		busyLayer.redraw();
+		vectorLayer.redraw();
+	}
+    </script>
+  </head>
+  <body onload="init()">    
+    <div style="float:left; width:500px; height:500px" id="map"></div>			
+  </body>
+</html>
+

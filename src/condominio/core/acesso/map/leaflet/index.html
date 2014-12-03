@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Teste Openlayers</title>
+    <script src="resources/leafleat.js"></script>      
+    <script src="../GeometriasL.js"></script> 
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.css' rel='stylesheet' />
+    <link rel="stylesheet" href="resources/leafleat.css" type="text/css"> 
+  </head>
+  <body>    
+	<script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.1.1/leaflet-omnivore.min.js"></script>
+	<div style="float:left; width:500px; height:500px" id="map"></div>
+	<script type="text/javascript">
+		scale = Math.ceil(691.0 / 250);	
+		var mapl = L.map('map', {
+		    crs: L.CRS.Simple,
+		    attributionControl: false,
+		    maxBounds: new L.LatLngBounds([-180, -180], [180, 180])
+		});
+
+		var imageUrl = '../images/MoradasII.png'; //mapa-antigo-tabula-nova.jpg'; //
+
+		L.imageOverlay(imageUrl, new L.LatLngBounds([-180, -180], [180, 180]), { noWrap: true, maxZoom: 5, minZoom: 0}).addTo(mapl);
+		
+		var defaultStyle = {
+		   fillColor: "#00FF00",	
+			color: 'white',
+        		dashArray: '3',
+		        opacity: 0.6,
+			fillOpacity: 0.8,
+		        weight: 2,
+		};
+
+		var selectStyle = {
+		   fillColor: "#FF0000",	
+			color: "#339950",
+		        opacity: 0.6,
+			fillOpacity: 0.8,
+		        weight: 2,
+		};
+
+		var selectedStyle = {
+		   fillColor: "#0000FF",	
+			color: "#0000",
+		        opacity: 0.6,
+			fillOpacity: 0.8,
+		        weight: 2,
+		};
+		
+		var featureLayer = L.geoJson();//L.mapbox.featureLayer().addTo(mapl);
+		var features = makeOverLayerFeatures();
+		for(var key in features) {
+		    var feat = features[key];
+		    feat.addTo(featureLayer);
+		}
+
+		featureLayer.on('mouseover',function(e) {
+			e.layer.setStyle(selectedStyle);
+			//featureLayer.resetStyle(e.layer)
+		});
+		featureLayer.on('click',function(e) {
+			e.layer.setStyle(selectStyle);
+			//featureLayer.resetStyle(e.layer)
+		});
+		featureLayer.on('mouseout',function(e) {
+			e.layer.setStyle(defaultStyle);
+			//featureLayer.resetStyle(e.layer)
+		});
+
+
+		featureLayer.setStyle(defaultStyle);
+		featureLayer.addTo(mapl);
+		
+		mapl.setView(new L.LatLng(541/scale/2, 691/scale/2), 0);
+  	</script>  
+    
+	<input type="radio" name="type" value="none" id="noneToggle"
+                       onclick="toggleControl(this);" checked="checked" />
+                <label for="noneToggle">navegar</label>
+				
+	<input type="radio" name="type" value="box" id="boxToggle"
+                       onclick="toggleControl(this);" checked="checked" />
+                <label for="boxToggle">desenhar</label>
+				
+	<input type="radio" name="type" value="select" id="selectToggle"
+                       onclick="toggleControl(this);" checked="checked" />
+                <label for="selectToggle">selecionar</label>
+
+	<input type="radio" name="type" value="remove" id="deleteToggle"
+                       onclick="toggleControl(this);" checked="checked" />
+                <label for="deleteToggle">deletar</label>
+  </body>
+</html>

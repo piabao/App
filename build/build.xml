@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<project name="Condominio" default="do-deploy" basedir="."  xmlns:fx="javafx:com.sun.javafx.tools.ant">
+	<target name="init-fx-tasks">
+		<path id="fxant">
+			<filelist>
+				<file name="${java.home}\..\lib\ant-javafx.jar"/>
+				<file name="${java.home}\lib\jfxrt.jar"/>
+			</filelist>
+		</path>
+	
+		<taskdef resource="com/sun/javafx/tools/ant/antlib.xml"      
+			uri="javafx:com.sun.javafx.tools.ant"
+			classpathref="fxant"/>
+	</target>
+	<target name="setup-staging-area">
+		<delete dir="externalLibs" />
+		<delete dir="project" />
+		<delete dir="projectRefs" />
+		
+		<mkdir dir="externalLibs" />
+		
+		<copy todir="externalLibs">
+			<fileset dir="D:\java\CondominioLibs">
+				<filename name="webcam-capture-0.3.10-RC6.jar"/>	
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="D:\java\CondominioLibs">
+				<filename name="bridj-0.7-20131007.003529-54.jar"/>	
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="D:\java\CondominioLibs">
+				<filename name="mysql-connector-java-5.1.8-bin.jar"/>	
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="D:\java\fxComponents">
+				<filename name="controlsfx-8.0.7-SNAPSHOT.jar"/>	
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="D:\java\CondominioLibs">
+				<filename name="itext-4.2.0.jar"/>	
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="D:\java\CondominioLibs">
+				<filename name="eclipselink.jar"/>	
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="D:\java\CondominioLibs">
+				<filename name="javax.persistence_2.1.0.v201304241213.jar"/>	
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="D:\java\CondominioLibs">
+				<filename name="slf4j-api-1.7.2.jar"/>	
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="D:\java\CondominioLibs">
+				<filename name="org.eclipse.persistence.jpa.jpql_2.5.0.v20130507-3faac2b.jar"/>	
+			</fileset>
+		</copy>
+		
+		<mkdir dir="project" />
+		<copy todir="project">
+			<fileset dir="D:\eclipse\workspaceDefault\Condominio">
+				<include name="src/**" />
+			</fileset>
+		</copy>
+		
+		<mkdir dir="projectRefs" />
+	</target>
+	<target name='do-compile'>
+		<delete dir="build" />
+		<mkdir dir="build/src" />
+		<mkdir dir="build/libs" />
+		<mkdir dir="build/classes" />
+	
+		<!-- Copy project-libs references -->
+		<copy todir="build/libs">
+			<fileset dir="externalLibs">
+				<include name="controlsfx-8.0.7-SNAPSHOT.jar"/>
+				<include name="itext-4.2.0.jar"/>
+				<include name="webcam-capture-0.3.10-RC6.jar"/>
+				<include name="javax.persistence_2.1.0.v201304241213.jar"/>
+				<include name="slf4j-api-1.7.2.jar"/>
+				<include name="org.eclipse.persistence.jpa.jpql_2.5.0.v20130507-3faac2b.jar"/>
+				<include name="bridj-0.7-20131007.003529-54.jar"/>
+				<include name="eclipselink.jar"/>
+				<include name="mysql-connector-java-5.1.8-bin.jar"/>
+			</fileset>
+		</copy>
+	
+		<!-- Copy project references -->
+	
+		<!-- Copy project sources itself -->
+		<copy todir="build/src">
+			<fileset dir="project/src">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+	
+		<javac includeantruntime="false" source="1.8" target="1.8" srcdir="build/src" destdir="build/classes" encoding="Cp1252">
+			<classpath>
+				<fileset dir="build/libs">
+					<include name="*"/>
+				</fileset>
+			</classpath>
+		</javac>
+		
+		<!-- Copy over none Java-Files -->
+		<copy todir="build/classes">
+		<fileset dir="project/src">
+			<exclude name="**/*.java"/>
+		</fileset>
+		</copy>
+	
+	
+	</target>
+	<target name="do-deploy" depends="setup-staging-area, do-compile, init-fx-tasks">
+		<delete file="dist"/>
+		<delete file="deploy" />
+		
+		<mkdir dir="dist" />
+		<mkdir dir="dist/libs" />
+		
+		<copy todir="dist/libs">
+			<fileset dir="externalLibs">
+				<include name="*" />
+			</fileset>
+		</copy>
+		
+		
+		<fx:resources id="appRes">
+			<fx:fileset dir="dist" includes="Condominio.jar"/>
+			<fx:fileset dir="dist" includes="libs/*"/>
+		</fx:resources> 
+		
+		<fx:application id="fxApplication"
+			name="Condominio"
+			mainClass="condominio.Condominio"
+			toolkit="fx"
+		/>
+	
+		<mkdir dir="build/classes/META-INF" />
+		
+		
+		
+		<fx:jar destfile="dist/Condominio.jar">
+			<fx:application refid="fxApplication"/>
+			<fileset dir="build/classes">
+			</fileset>
+			<fx:resources refid="appRes"/>
+			
+			<manifest>
+				<attribute name="Implementation-Vendor" value="Marlon"/>
+				<attribute name="Implementation-Title" value="Condominio"/>
+				<attribute name="Implementation-Version" value="0.9"/>
+				<attribute name="Permissions" value="all-permissions"/>
+				<attribute name="Application-Name" value="Moradas Palho�a II"/>
+				<attribute name="Application-Editor" value="Marlon Harnisch"/>
+				<attribute name="JavaFX-Feature-Proxy" value="None"/>
+			</manifest>
+		</fx:jar>
+		
+	
+		<mkdir dir="deploy" />
+		<!-- Need to use ${basedir} because somehow the ant task is calculating the directory differently -->
+		<fx:deploy
+			embedJNLP="false"
+			extension="false"
+			width="800" height="600" 
+			includeDT="false"
+			offlineAllowed="true"
+			outdir="${basedir}/deploy"
+			outfile="Condominio" nativeBundles="none"
+			updatemode="background" >
+	
+			<fx:info title="Condominio" vendor="Marlon"/>
+			<fx:application refId="fxApplication"/>
+			<fx:resources refid="appRes"/>
+		</fx:deploy>
+		
+		
+	</target>
+</project>

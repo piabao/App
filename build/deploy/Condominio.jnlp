@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Condominio.jnlp">
+  <information>
+    <title>Condominio</title>
+    <vendor>Marlon</vendor>
+    <description>Sample JavaFX 2.0 application.</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <jfx:javafx-runtime version="2.2+" href="http://javadl.sun.com/webapps/download/GetFile/javafx-latest/windows-i586/javafx2.jnlp"/>
+  </resources>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Condominio.jar" size="4529202" download="eager" />
+    <jar href="libs/bridj-0.7-20131007.003529-54.jar" size="939337" download="eager" />
+    <jar href="libs/controlsfx-8.0.7-SNAPSHOT.jar" size="859462" download="eager" />
+    <jar href="libs/eclipselink.jar" size="8078274" download="eager" />
+    <jar href="libs/itext-4.2.0.jar" size="2243043" download="eager" />
+    <jar href="libs/javax.persistence_2.1.0.v201304241213.jar" size="160564" download="eager" />
+    <jar href="libs/mysql-connector-java-5.1.8-bin.jar" size="723660" download="eager" />
+    <jar href="libs/org.eclipse.persistence.jpa.jpql_2.5.0.v20130507-3faac2b.jar" size="1396640" download="eager" />
+    <jar href="libs/slf4j-api-1.7.2.jar" size="26083" download="eager" />
+    <jar href="libs/webcam-capture-0.3.10-RC6.jar" size="395282" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Condominio" >
+    <param name="requiredFXVersion" value="2.2+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="condominio.Condominio"  name="Condominio" />
+  <update check="background"/>
+</jnlp>
