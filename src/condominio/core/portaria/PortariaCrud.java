@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.util.Callback;
 import condominio.server.modelo.ANIMAIS;
 import condominio.server.modelo.CADASTRO_MORADOR;
 import condominio.server.modelo.MODELO;
@@ -119,8 +120,8 @@ public class PortariaCrud {
 		return opera == null ? new ArrayList<OPERADORA>() : opera;
 	}
     
-    public List<CADASTRO_MORADOR> searchMorador(String value){
-    	List<CADASTRO_MORADOR> moradores=  cadastro.searchMorador(value);//, null); // TODO
+    public List<CADASTRO_MORADOR> searchMorador(String value, Callback<List<CADASTRO_MORADOR>, Void> callback){
+    	List<CADASTRO_MORADOR> moradores=  cadastro.searchMorador(value, callback);//, null); // TODO
     	return moradores == null ? new ArrayList<CADASTRO_MORADOR>() : moradores;
     }
     
@@ -134,15 +135,15 @@ public class PortariaCrud {
 		return moradores == null ? new TIPO_MORADOR() : moradores;
 	}
 
-	public List<MODELO> searchModelo(String newValue) {		
-		return modelo.searchModelo(newValue);
-	}
+//	public List<MODELO> searchModelo(String newValue) {		
+//		return modelo.searchModelo(newValue);
+//	}
 
 	public boolean removerMorador(CADASTRO_MORADOR moradorEmEdicao) {
 		try {
 			cadastro.destroy(moradorEmEdicao.getId());
 			telefones.destroy(moradorEmEdicao.getId());
-			if(cadastro.searchMorador(moradorEmEdicao.getIdentificador()/*, null*/).size() == 0){ //TODO
+			if(cadastro.searchMorador(moradorEmEdicao.getIdentificador(), null).size() == 0){ //TODO
 				veiculos.destroy(moradorEmEdicao.getIdentificador());	
 				animais.destroy(moradorEmEdicao.getIdentificador());
 			}
@@ -192,8 +193,8 @@ public class PortariaCrud {
     	return veiculos.findVeiculosByVisitante(id);
     }
 
-	public List<CADASTRO_MORADOR> searchVisitante(String value) {
-		List<CADASTRO_MORADOR> moradores=  cadastro.searchVisitante(value);//, null); // TODO
+	public List<CADASTRO_MORADOR> searchVisitante(String value,  Callback<List<CADASTRO_MORADOR>, Void> callback) {
+		List<CADASTRO_MORADOR> moradores=  cadastro.searchVisitante(value, callback); // TODO
     	return moradores == null ? new ArrayList<CADASTRO_MORADOR>() : moradores;
 	}
 

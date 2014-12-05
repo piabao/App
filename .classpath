@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_05"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_11"/>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/java/CondominioLibs/bridj-0.7-20131007.003529-54.jar"/>
-	<classpathentry kind="lib" path="D:/java/CondominioLibs/eclipselink.jar"/>
-	<classpathentry kind="lib" path="D:/java/CondominioLibs/itext-4.2.0.jar"/>
-	<classpathentry kind="lib" path="D:/java/CondominioLibs/javax.persistence_2.1.0.v201304241213.jar"/>
-	<classpathentry kind="lib" path="D:/java/CondominioLibs/mysql-connector-java-5.1.8-bin.jar"/>
-	<classpathentry kind="lib" path="D:/java/CondominioLibs/org.eclipse.persistence.jpa.jpql_2.5.0.v20130507-3faac2b.jar"/>
-	<classpathentry kind="lib" path="D:/java/CondominioLibs/slf4j-api-1.7.2.jar"/>
-	<classpathentry kind="lib" path="D:/java/CondominioLibs/webcam-capture-0.3.10-RC6.jar"/>
-	<classpathentry kind="lib" path="D:/java/fxComponents/controlsfx-8.0.7-SNAPSHOT.jar" sourcepath="/ControlsFX"/>
+	<classpathentry kind="lib" path="/home/marlon.harnisch/git/AppCond1/build/externalLibs/bridj-0.7-20131007.003529-54.jar"/>
+	<classpathentry kind="lib" path="/home/marlon.harnisch/git/AppCond1/build/externalLibs/eclipselink.jar"/>
+	<classpathentry kind="lib" path="/home/marlon.harnisch/git/AppCond1/build/externalLibs/itext-4.2.0.jar"/>
+	<classpathentry kind="lib" path="/home/marlon.harnisch/git/AppCond1/build/externalLibs/javax.persistence_2.1.0.v201304241213.jar"/>
+	<classpathentry kind="lib" path="/home/marlon.harnisch/git/AppCond1/build/externalLibs/mysql-connector-java-5.1.8-bin.jar"/>
+	<classpathentry kind="lib" path="/home/marlon.harnisch/git/AppCond1/build/externalLibs/org.eclipse.persistence.jpa.jpql_2.5.0.v20130507-3faac2b.jar"/>
+	<classpathentry kind="lib" path="/home/marlon.harnisch/git/AppCond1/build/externalLibs/slf4j-api-1.7.2.jar"/>
+	<classpathentry kind="lib" path="/home/marlon.harnisch/git/AppCond1/build/externalLibs/webcam-capture-0.3.10-RC6.jar"/>
+	<classpathentry kind="lib" path="/home/marlon.harnisch/git/AppCond1/build/externalLibs/controlsfx-8.0.7-SNAPSHOT.jar" sourcepath="/ControlsFX"/>
 	<classpathentry kind="lib" path="D:/java/CondominioLibs/java-json.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
