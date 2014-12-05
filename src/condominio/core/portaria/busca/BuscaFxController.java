@@ -32,6 +32,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.util.Callback;
 import condominio.Condominio;
 import condominio.core.login.Privilegios;
 import condominio.core.portaria.PortariaCrud;
@@ -82,13 +83,22 @@ public class BuscaFxController implements Initializable{
     	    		return;
     	    	}
     	    	
-    	    	resultadoList = pCrud.searchMorador(newValue);
-    	    	if(resultadoList.isEmpty()){
-    	    		autoComplete.hidePopup();
-    	    		return;
-    	    	}
-    	    	autoComplete.setNewData(resultadoList);
-    	    	setAction();
+    	    	pCrud.searchMorador(newValue, new Callback<List<CADASTRO_MORADOR>, Void>() {
+					
+					@Override
+					public Void call(List<CADASTRO_MORADOR> result) {
+						resultadoList = result;
+				    	    	if(resultadoList.isEmpty()){
+				    	    		autoComplete.hidePopup();
+				    	    		return null;
+				    	    	}
+				    	    	autoComplete.setNewData(resultadoList);
+				    	    	setAction();
+						return null;
+					}
+				});
+    	    	
+    	    	
     	    }
     	});   	    	
     }  
@@ -150,7 +160,7 @@ public class BuscaFxController implements Initializable{
     		content.append("Numero da vaga: "+ value.getVaga()+"\n");	
     	}
     	if(value.getObservacao() != null && !value.getObservacao().isEmpty()){
-    		content.append("\n OBSERVAÇÕES: "+ value.getObservacao()+"\n");    		
+    		content.append("\n OBSERVAï¿½ï¿½ES: "+ value.getObservacao()+"\n");    		
     	}    		
     	
 		detalhes.setText(content.toString());

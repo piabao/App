@@ -12,6 +12,6 @@
 	<classpathentry kind="lib" path="/home/marlon.harnisch/git/AppCond1/build/externalLibs/slf4j-api-1.7.2.jar"/>
 	<classpathentry kind="lib" path="/home/marlon.harnisch/git/AppCond1/build/externalLibs/webcam-capture-0.3.10-RC6.jar"/>
 	<classpathentry kind="lib" path="/home/marlon.harnisch/git/AppCond1/build/externalLibs/controlsfx-8.0.7-SNAPSHOT.jar" sourcepath="/ControlsFX"/>
-	<classpathentry kind="lib" path="D:/java/CondominioLibs/java-json.jar"/>
+	<classpathentry kind="lib" path="/home/marlon.harnisch/git/AppCond1/build/externalLibs/java-json.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

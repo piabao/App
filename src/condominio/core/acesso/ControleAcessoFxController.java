@@ -174,14 +174,21 @@ public class ControleAcessoFxController implements Initializable{
     	    		return;
     	    	}
     	    	
-    	    	collection = pCrud.searchVisitante(newValue);
-    	    	if(collection.isEmpty()){
-    	    		autoComplete.hidePopup();
-    	    		return;
-    	    	}
+    	    	pCrud.searchVisitante(newValue, new Callback<List<CADASTRO_MORADOR>, Void>() {
+					
+					@Override
+					public Void call(List<CADASTRO_MORADOR> param) {
+						collection = param;
+						if(collection.isEmpty()){
+		    	    		autoComplete.hidePopup();
+		    	    		return null;
+		    	    	}
+						autoComplete.setNewData(collection);    	    		
+		    	    	setAction();
+						return null;
+					}
+				});
     	    	
-    	    	autoComplete.setNewData(collection);    	    		
-    	    	setAction();
 			}
     	});
     	
@@ -306,7 +313,7 @@ public class ControleAcessoFxController implements Initializable{
 	}
     
     public void abrirMapa(MouseEvent ev){
-    	((AcessoMapFxController)abrirFXML(ev, "AcessoMap.fxml", "Mapa Condomínio")).setApp(this);
+    	((AcessoMapFxController)abrirFXML(ev, "AcessoMap.fxml", "Mapa Condomï¿½nio")).setApp(this);
     }
 
 	
@@ -380,7 +387,7 @@ public class ControleAcessoFxController implements Initializable{
     	if(selectedItem == null){
     		return;
     	}
-    	Action response = Dialogs.create().title("Confirmação").masthead("Liberar Vaga").message("Deseja remover o veiculo desta Vaga?").showConfirm();
+    	Action response = Dialogs.create().title("Confirmaï¿½ï¿½o").masthead("Liberar Vaga").message("Deseja remover o veiculo desta Vaga?").showConfirm();
 		if(response == Dialog.Actions.YES){				
 	    	HISTORICO_ACESSO acesso = aCrud.findHistorico(selectedItem.getIdHistorico());
 	    	acesso.setDataSaida(new Date().getTime());

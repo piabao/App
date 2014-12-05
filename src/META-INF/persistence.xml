@@ -16,16 +16,16 @@
     <class>condominio.server.modelo.FUNCIONARIOS</class>
     <class>condominio.server.modelo.OCORRENCIAS</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/moradasII?zeroDateTimeBehavior=convertToNull"/>
-      <property name="javax.persistence.jdbc.password" value="admin"/>
-      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.user" value="root"/>
-
-
-<!-- 	  <property name="javax.persistence.jdbc.url" value="jdbc:mysql://31.170.166.50:3306/u817327106_morp2?zeroDateTimeBehavior=convertToNull"/> -->
-<!--       <property name="javax.persistence.jdbc.password" value="powerful"/> -->
+<!--       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/moradasII?zeroDateTimeBehavior=convertToNull"/> -->
+<!--       <property name="javax.persistence.jdbc.password" value="admin"/> -->
 <!--       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/> -->
-<!--       <property name="javax.persistence.jdbc.user" value="u817327106_admin"/> -->
+<!--       <property name="javax.persistence.jdbc.user" value="root"/> -->
+
+
+	  <property name="javax.persistence.jdbc.url" value="jdbc:mysql://31.170.166.50:3306/u817327106_morp2?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.password" value="powerful"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="u817327106_admin"/>
 
 <!-- 	<property name="javax.persistence.jdbc.url" value="jdbc:mysql://marlon.heliohost.org:3306/piabao_moradas2?zeroDateTimeBehavior=convertToNull"/> -->
 <!--     <property name="javax.persistence.jdbc.password" value="powerful"/> -->
