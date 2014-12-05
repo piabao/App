@@ -51,6 +51,7 @@ public class PRIVILEGIOS implements Serializable{
 		this.permissao = permissao;
 	}
     
-    
-
+    public String getAtribNames() {
+		return "id, descricao, permissao".toUpperCase();
+	}
 }

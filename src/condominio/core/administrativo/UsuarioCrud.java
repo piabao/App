@@ -8,15 +8,21 @@ import condominio.server.modelo.USUARIO;
 import condominio.server.modelo.dao.PrivilegiosJpaController;
 import condominio.server.modelo.dao.UsuarioJpaController;
 import condominio.server.modelo.dao.exceptions.NonexistentEntityException;
+import condominio.server.modelo.php.PrivilegiosPhpController;
+import condominio.server.modelo.php.UsuarioPhpController;
 
 public class UsuarioCrud {
 	
-	private UsuarioJpaController usuario;
-	private PrivilegiosJpaController privilegio;
+//	private UsuarioJpaController usuario;
+//	private PrivilegiosJpaController privilegio;
+	private PrivilegiosPhpController privilegio;
+	private UsuarioPhpController usuario;
 	
 	public UsuarioCrud(){
-		usuario = new UsuarioJpaController();
-		privilegio = new PrivilegiosJpaController();
+//		usuario = new UsuarioJpaController();
+//		privilegio = new PrivilegiosJpaController();
+		usuario = new UsuarioPhpController();
+		privilegio = new PrivilegiosPhpController();
 	}
 
 	public USUARIO create(USUARIO user) {

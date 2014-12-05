@@ -88,5 +88,9 @@ public class USUARIO implements Serializable{
 	    public String toString() {
 	        return user;
 	    }
+	    
+	    public String getAtribNames() {
+			return "id, user, senha, funcionario, privilegios".toUpperCase();
+		}
 
 }
