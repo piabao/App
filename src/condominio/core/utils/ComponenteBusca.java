@@ -12,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.util.Callback;
 import condominio.core.portaria.PortariaCrud;
 import condominio.server.modelo.CADASTRO_MORADOR;
 
@@ -79,20 +80,12 @@ public class ComponenteBusca {
     	    		return;
     	    	}
     	    	if(tipoBusca.equals(TipoBusca.CADASTRO_TODOS)){
-    	    		collection = pCrud.searchMorador(newValue);
+    	    		collection = pCrud.searchMorador(newValue, doStuff());
     	    	}else if(tipoBusca.equals(TipoBusca.VISITANTES)){
-    	    		collection = pCrud.searchVisitante(newValue);
+    	    		collection = pCrud.searchVisitante(newValue, doStuff()); 
     	    	}
-    	    	
-    	    	ObservableList<CADASTRO_MORADOR> resultadoList = FXCollections.observableList(collection);
-    	    	//TODO 
-    	    	if(resultadoList.isEmpty()){
-    	    		resultado.setVisible(false);
-    	    		return;
-    	    	}
-    	    	resultado.setVisible(true);
-    	        resultado.setItems(resultadoList);
     	    }
+			
     	});
     	
     	busca.setOnKeyPressed(new EventHandler<KeyEvent>()
@@ -127,5 +120,22 @@ public class ComponenteBusca {
             }
         });
 	}
-
+	private Callback<List<CADASTRO_MORADOR>, Void> doStuff() {
+		Callback<List<CADASTRO_MORADOR>, Void> callback = new Callback<List<CADASTRO_MORADOR>, Void>() {
+			
+			@Override
+			public Void call(List<CADASTRO_MORADOR> param) {
+				ObservableList<CADASTRO_MORADOR> resultadoList = FXCollections.observableList(collection);
+		    	//TODO 
+		    	if(resultadoList.isEmpty()){
+		    		resultado.setVisible(false);
+		    		return null;
+		    	}
+		    	resultado.setVisible(true);
+		        resultado.setItems(resultadoList);
+				return null;
+			}
+		};
+		return callback;		
+	}
 }
