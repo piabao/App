@@ -9,10 +9,12 @@ import condominio.server.modelo.HISTORICO_ACESSO;
 import condominio.server.modelo.dao.FuncionariosJpaController;
 import condominio.server.modelo.dao.HistoricoAcessoJpaController;
 import condominio.server.modelo.dao.exceptions.NonexistentEntityException;
+import condominio.server.modelo.php.FuncionariosPhpController;
 
 public class FuncionariosCrud {
 	
-	FuncionariosJpaController funcionarios = new FuncionariosJpaController();
+//	FuncionariosJpaController funcionarios = new FuncionariosJpaController();
+	FuncionariosPhpController funcionarios = new FuncionariosPhpController();
 
 	public FUNCIONARIOS salvarFuncionario(FUNCIONARIOS funcionario) {
 		try {

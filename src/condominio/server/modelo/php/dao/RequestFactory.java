@@ -28,7 +28,7 @@ public class RequestFactory {
 		this.url = url;
 		this.args = args;
 		
-		//createProxy();
+		createProxy();
 	}
 	
 	private void createProxy() {
