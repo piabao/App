@@ -20,7 +20,6 @@ public class AnimaisPhpController {
 			rf = new RequestFactory(RequestFactory.salvarUrl, TABLE_NAME, valores.getAtribNames(), getValues(valores));			
 		}
 		rf.doPost();
-		
 	}
 
 	private String getValues(ANIMAIS val) {
