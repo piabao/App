@@ -18,7 +18,7 @@ public class FuncionariosPhpController {
 
 	public FUNCIONARIOS findFUNCIONARIOS(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return new FUNCIONARIOS();
 	}
 
 	public List<FUNCIONARIOS> findFUNCIONARIOSEntities() {

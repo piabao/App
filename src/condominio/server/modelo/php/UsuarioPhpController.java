@@ -1,6 +1,7 @@
 package condominio.server.modelo.php;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import condominio.server.modelo.USUARIO;
@@ -46,7 +47,7 @@ public class UsuarioPhpController {
 
 	public List<USUARIO> findUSUARIOEntities() {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<USUARIO>();
 	}
 
 	public void destroy(Long id) throws NonexistentEntityException{
