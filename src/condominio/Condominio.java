@@ -60,7 +60,7 @@ public class Condominio extends Application {
     	stage = primaryStage;
     	primaryStage.setTitle("Moradas Palho�a II");
     	//primaryStage.setOpacity(0.3);
-            //carregarPermissoes();            
+            carregarPermissoes();            
             carregarBusca();
             carregarCadastro();
             carregarRelatorios();

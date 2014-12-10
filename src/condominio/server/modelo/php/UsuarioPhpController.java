@@ -7,11 +7,13 @@ import condominio.server.modelo.USUARIO;
 import condominio.server.modelo.VEICULOS;
 import condominio.server.modelo.dao.exceptions.NonexistentEntityException;
 import condominio.server.modelo.php.dao.RequestFactory;
+import condominio.server.modelo.php.js.PrivilegiosHelper;
+import condominio.server.modelo.php.js.UsuarioHelper;
 import condominio.server.modelo.php.js.VeiculosHelper;
 
 public class UsuarioPhpController {
 
-	private static final String TABLE_NAME = "usuarios";
+	private static final String TABLE_NAME = "usuario";
 
 	public USUARIO create(USUARIO user) throws SQLException{
 		RequestFactory rf;
@@ -30,12 +32,16 @@ public class UsuarioPhpController {
 	}
 
 	private String getEditValues(USUARIO user) {
-		return "SENHA = '"+user.getSenha()+"', ID = '"+user.getId()+"', FUNCIONARIOS = '"+user.getFuncionario()+"', USUARIO = '"+user.getUsuario()+"'";
+		return "SENHA = '"+user.getSenha()+"', ID = '"+user.getId()+"', FUNCIONARIOS = '"+user.getFuncionario()+"', USER = '"+user.getUsuario()+"'";
 	}
 
 	public USUARIO findUSUARIO(String user) {
-		// TODO Auto-generated method stub
-		return null;
+		RequestFactory rf = new RequestFactory(RequestFactory.carregarUrl, TABLE_NAME, "USER = '"+user+"'");
+		List<USUARIO> usuarioList = UsuarioHelper.toUsuarioList(rf.doPost());
+		if(usuarioList == null || usuarioList.isEmpty()){
+			return new USUARIO();
+		}
+		return usuarioList.get(0);
 	}
 
 	public List<USUARIO> findUSUARIOEntities() {

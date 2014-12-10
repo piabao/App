@@ -21,7 +21,7 @@ public class PrivilegiosHelper {
 	public static final String ID = "ID";
 	public static final String DESCRICAO = "DESCRICAO";
 	public static final String PERMISSAO = "PERMISSAO";
-	public static final String USUARIO = "USUARIO";
+	public static final String USER = "USER";
 
 	public static List<PRIVILEGIOS> toPrivilegioList(String json) {
 		List<PRIVILEGIOS> values = new ArrayList<PRIVILEGIOS>();
@@ -33,7 +33,7 @@ public class PrivilegiosHelper {
 				cadastro.setDescricao(verify(privilegios.get(DESCRICAO)));
 				cadastro.setPermissao(convertToBoolean(privilegios.get(PERMISSAO)));
 				cadastro.setId(convertToLong(privilegios.get(ID)));
-				cadastro.setUsuario(recuperarUsuario(privilegios.get(USUARIO)));
+				//TODO: cadastro.setUsuario(recuperarUsuario(privilegios.get(USER)));
 				values.add(cadastro);
 			}
 		} catch (JSONException e) {

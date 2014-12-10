@@ -49,14 +49,14 @@ public class LoginController extends AnchorPane implements Initializable {
     public void processLogin(ActionEvent event) {
     	USUARIO usuario = userCrud.processaLogin(userId.getText());
     	if(usuario.getUsuario() == null || usuario.getUsuario().isEmpty()){
-    		errorMessage.setText("Usuario inixistente " + userId.getText());
+    		errorMessage.setText("Usuario inexistente " + userId.getText());
     		return;
     	}
     	if(!validaLogin(usuario)){
     		errorMessage.setText("Senha incorreta " + userId.getText());
     		return;
     	}
-    	errorMessage.setText("Ol� " + userId.getText());
+    	errorMessage.setText("Olá " + userId.getText());
     	preencherPrivilegios(usuario);
     	application.carregarPrimeiraPagina();
     }

@@ -28,7 +28,7 @@ public class PrivilegiosPhpController {
 	}
 
 	private String getEditValues(PRIVILEGIOS prv) {
-		return "DESCRICAO = '"+prv.getDescricao()+"', ID = '"+prv.getId()+"', USUARIO = '"+prv.getUsuario()+"'";
+		return "DESCRICAO = '"+prv.getDescricao()+"', ID = '"+prv.getId()+"', IDUSUARIO = '"+prv.getUsuario()+"'";
 	}
 
 	private String getValues(PRIVILEGIOS prv) {
@@ -36,7 +36,7 @@ public class PrivilegiosPhpController {
 	}
 
 	public List<PRIVILEGIOS> findPrivilegiosByUser(Long id) {
-		RequestFactory rf = new RequestFactory(RequestFactory.carregarUrl, TABLE_NAME, "ID = '"+id+"'");
+		RequestFactory rf = new RequestFactory(RequestFactory.carregarUrl, TABLE_NAME, "IDUSUARIO = '"+id+"'");
 		return PrivilegiosHelper.toPrivilegioList(rf.doPost());
 	}
 
