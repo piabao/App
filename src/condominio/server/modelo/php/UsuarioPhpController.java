@@ -8,6 +8,7 @@ import condominio.server.modelo.USUARIO;
 import condominio.server.modelo.VEICULOS;
 import condominio.server.modelo.dao.exceptions.NonexistentEntityException;
 import condominio.server.modelo.php.dao.RequestFactory;
+import condominio.server.modelo.php.js.FuncionariosHelper;
 import condominio.server.modelo.php.js.PrivilegiosHelper;
 import condominio.server.modelo.php.js.UsuarioHelper;
 import condominio.server.modelo.php.js.VeiculosHelper;
@@ -46,13 +47,12 @@ public class UsuarioPhpController {
 	}
 
 	public List<USUARIO> findUSUARIOEntities() {
-		// TODO Auto-generated method stub
-		return new ArrayList<USUARIO>();
+		RequestFactory rf = new RequestFactory(RequestFactory.carregarUrl, TABLE_NAME, "ID = ID");
+		return UsuarioHelper.toUsuarioList(rf.doPost());
 	}
 
 	public void destroy(Long id) throws NonexistentEntityException{
-		// TODO Auto-generated method stub
-		
+		RequestFactory rf = new RequestFactory(RequestFactory.removerUrl, TABLE_NAME, "ID = '"+id+"'");
+		rf.doPost();
 	}
-
 }

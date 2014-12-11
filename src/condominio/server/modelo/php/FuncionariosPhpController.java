@@ -7,6 +7,7 @@ import java.util.List;
 import condominio.server.modelo.FUNCIONARIOS;
 import condominio.server.modelo.dao.exceptions.NonexistentEntityException;
 import condominio.server.modelo.php.dao.RequestFactory;
+import condominio.server.modelo.php.js.CadastroMoradorHelper;
 import condominio.server.modelo.php.js.FuncionariosHelper;
 import condominio.server.modelo.php.js.OperadoraHelper;
 
@@ -34,19 +35,21 @@ public class FuncionariosPhpController {
 	}
 
 	public FUNCIONARIOS findFUNCIONARIOS(Long id) {
-		// TODO Auto-generated method stub
+		RequestFactory rf = new RequestFactory(RequestFactory.carregarUrl, TABLE_NAME, "ID ='"+id+"'");
+		List<FUNCIONARIOS> funcionariosList = FuncionariosHelper.toFuncionariosList(rf.doPost());
+		if(funcionariosList != null && !funcionariosList.isEmpty()){
+			return funcionariosList.get(0);
+		}
 		return new FUNCIONARIOS();
 	}
 
 	public List<FUNCIONARIOS> findFUNCIONARIOSEntities() {
-		// TODO Auto-generated method stub
-		return new ArrayList<FUNCIONARIOS>();
+		RequestFactory rf = new RequestFactory(RequestFactory.carregarUrl, TABLE_NAME, "ID = ID");
+		return FuncionariosHelper.toFuncionariosList(rf.doPost());
 	}
 
 	public void destroy(Long id) throws NonexistentEntityException, SQLException{
-		// TODO Auto-generated method stub
-		
-	}
-
-	
+		RequestFactory rf = new RequestFactory(RequestFactory.removerUrl, TABLE_NAME, "ID = '"+id+"'");
+		rf.doPost();
+	}	
 }
