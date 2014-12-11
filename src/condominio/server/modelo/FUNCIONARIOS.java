@@ -179,5 +179,8 @@ public class FUNCIONARIOS implements Serializable {
     public String toString() {
         return nome + " - " + funcao;
     }
-    
+
+	public String getAtribNames() {
+		return "id, nome, endereco, bairro, cep, cidade, uf, telefone, celular, email, funcao, cargaHoraria, dataAdmicao".toUpperCase(); 
+	}
 }
