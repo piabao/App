@@ -3,10 +3,6 @@ package condominio.server.modelo.php;
 import java.sql.SQLException;
 import java.util.List;
 
-import netscape.javascript.JSObject;
-import javafx.event.EventHandler;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebEvent;
 import javafx.util.Callback;
 import condominio.server.modelo.CADASTRO_MORADOR;
 import condominio.server.modelo.php.dao.RequestFactory;
@@ -15,18 +11,28 @@ import condominio.server.modelo.php.js.CadastroMoradorHelper;
 public class CadastroMoradorPhpController {
 
 	private static final String TABLE_NAME = "cadastro_morador";
+	private Callback<List<CADASTRO_MORADOR>, Void> callbackRetorno;
 	
-	public List<CADASTRO_MORADOR> searchMorador(String value, final Callback<List<CADASTRO_MORADOR>, Void> callback) {
+	public List<CADASTRO_MORADOR> searchMorador(String value, Callback<List<CADASTRO_MORADOR>, Void> callback) {
+		if(value == null || value.isEmpty()){
+			return null;
+		}
 		RequestFactory rf = new RequestFactory(RequestFactory.carregarUrl, "", "", value, "1");
 		if(callback == null){
 			return CadastroMoradorHelper.toMoradorList(rf.doPost());
 		}
+		this.callbackRetorno = callback;
 		rf.doPost(new Callback<String, Void>() {
 			
 			@Override
 			public Void call(String param) {
-				callback.call(CadastroMoradorHelper.toMoradorList(param));
-				return null;
+			try{
+				callbackRetorno.call(CadastroMoradorHelper.toMoradorList(param));
+			} catch (IllegalStateException e) {
+				System.out.println("Deu um erro???" + callbackRetorno.toString() + param);
+			}
+			
+			return null;
 			}
 		});
 		return null;

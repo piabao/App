@@ -18,6 +18,7 @@ import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 import org.controlsfx.control.textfield.AutoCompletionBinding.AutoCompletionEvent;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -92,8 +93,13 @@ public class BuscaFxController implements Initializable{
 				    	    		autoComplete.hidePopup();
 				    	    		return null;
 				    	    	}
-				    	    	autoComplete.setNewData(resultadoList);
-				    	    	setAction();
+				    	    	Platform.runLater(new Runnable() {
+				    	    	    @Override
+				    	    	    public void run() {
+				    	    	    	autoComplete.setNewData(resultadoList);
+						    	    	setAction();
+				    	    	    }
+				    	    	});				    	    	
 						return null;
 					}
 				});

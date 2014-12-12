@@ -27,6 +27,7 @@ public class FuncionariosHelper {
 	public static final String FUNCAO = "FUNCAO";
 	private static final String CARGAHORARIA = "CARGAHORARIA";
 	private static final String DATAADMICAO = "DATAADMICAO";
+	private static final String NULL = "null";
 
 	public static List<FUNCIONARIOS> toFuncionariosList(String json) {
 		List<FUNCIONARIOS> values = new ArrayList<FUNCIONARIOS>();
@@ -64,7 +65,7 @@ public class FuncionariosHelper {
 	}
 
 	private static Long convertToLong(Object chave) {
-		if(chave == null){
+		if(chave == null || chave.equals(null)){
 			return null;
 		}
 		return Long.parseLong(chave.toString());

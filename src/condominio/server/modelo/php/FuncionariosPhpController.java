@@ -1,15 +1,12 @@
 package condominio.server.modelo.php;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import condominio.server.modelo.FUNCIONARIOS;
 import condominio.server.modelo.dao.exceptions.NonexistentEntityException;
 import condominio.server.modelo.php.dao.RequestFactory;
-import condominio.server.modelo.php.js.CadastroMoradorHelper;
 import condominio.server.modelo.php.js.FuncionariosHelper;
-import condominio.server.modelo.php.js.OperadoraHelper;
 
 public class FuncionariosPhpController {
 

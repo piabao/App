@@ -57,9 +57,9 @@ public class Condominio extends Application {
 	
     @Override
     public void start(Stage primaryStage) {
+    	primaryStage.setTitle("Moradas Palhoça II");
+    	primaryStage.setOpacity(0.3);
     	stage = primaryStage;
-    	primaryStage.setTitle("Moradas Palho�a II");
-    	//primaryStage.setOpacity(0.3);
             carregarPermissoes();            
             carregarBusca();
             carregarCadastro();
