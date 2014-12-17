@@ -110,4 +110,8 @@ public class HISTORICO_ACESSO {
 	        return casa + " - " + new Date(dataEntrada);
 	    }
 
+		public String getAtribNames() {
+			return "id, idVisitante, idVeiculo, dataEntrada, dataSaida, casa, responsavel".toUpperCase();
+		}
+
 }

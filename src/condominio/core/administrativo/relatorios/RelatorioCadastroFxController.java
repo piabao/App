@@ -114,6 +114,7 @@ public class RelatorioCadastroFxController implements Initializable{
 	public void atualizarRelatorio(ActionEvent evt){
 		if(relatorios.getSelectionModel().getSelectedItem().equals(RelatorioFiltro.FUNCIONARIOS)){
 			funcGrid.setItems(FXCollections.observableList(fCrud.buscarTodosFuncionarios()));
+			return;
 		}
 		
 		if(filtros.getSelectionModel().getSelectedIndex() == 0){

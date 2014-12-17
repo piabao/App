@@ -11,7 +11,6 @@ import impl.org.controlsfx.autocompletion.AutoCompletionTextFieldBinding;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.AutoCompletionBinding;
@@ -21,18 +20,13 @@ import org.controlsfx.control.textfield.AutoCompletionBinding.AutoCompletionEven
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 import condominio.Condominio;
 import condominio.core.login.Privilegios;

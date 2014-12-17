@@ -43,10 +43,14 @@ public class PrivilegiosHelper {
 	}
 
 	private static boolean convertToBoolean(Object object) {
+		boolean valor = false;
 		if(object == null){
-			return false;
+			return valor;
 		}
-		return Boolean.getBoolean(object.toString());
+		if(Integer.parseInt(object.toString()) == 0){
+			valor = true;
+		}
+		return valor;
 	}
 
 	private static USUARIO recuperarUsuario(Object object) {

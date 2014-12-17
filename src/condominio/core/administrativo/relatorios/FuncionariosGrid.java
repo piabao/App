@@ -55,7 +55,7 @@ public class FuncionariosGrid extends TableView<FUNCIONARIOS> {
 					}
 
 					private String getString() {
-						if(getItem().isEmpty()){
+						if(getItem() == null || getItem().isEmpty()){
 							return "";
 						}
                         return getItem().toString().replace("[", "").replace("]", "").replace("{", "").replace("}", "");

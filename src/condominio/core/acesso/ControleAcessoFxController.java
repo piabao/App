@@ -25,6 +25,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -179,12 +180,18 @@ public class ControleAcessoFxController implements Initializable{
 					@Override
 					public Void call(List<CADASTRO_MORADOR> param) {
 						collection = param;
-						if(collection.isEmpty()){
-		    	    		autoComplete.hidePopup();
-		    	    		return null;
-		    	    	}
-						autoComplete.setNewData(collection);    	    		
-		    	    	setAction();
+						Platform.runLater(new Runnable() {
+		    	    	    @Override
+		    	    	    public void run() {
+		    	    	    	if(collection.isEmpty()){
+				    	    		autoComplete.hidePopup();
+				    	    		return;
+				    	    	}
+								autoComplete.setNewData(collection);    	    		
+				    	    	setAction();
+		    	    	    }
+		    	    	});	
+						
 						return null;
 					}
 				});

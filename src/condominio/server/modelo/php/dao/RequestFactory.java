@@ -88,25 +88,25 @@ public class RequestFactory {
 	}
 
 	public void doPost(final Callback<String, Void> callback) {
-//		Runnable runnable = new Runnable() {
-//			
-//			@Override
-//			public void run() {
-//				try{
-//				StringBuffer response = new StringBuffer();
-//				String doRequest = doRequest(response);
-//				callback.call(doRequest);
-//				}finally{
-//					try {
-//						this.finalize();
-//					} catch (Throwable e) {
-//						e.printStackTrace();
-//					}
-//				}
-//			}
-//		};
-//		Thread thread = new Thread(runnable);
-//		thread.start();
+		Runnable runnable = new Runnable() {
+			
+			@Override
+			public void run() {
+				try{
+				StringBuffer response = new StringBuffer();
+				String doRequest = doRequest(response);
+				callback.call(doRequest);
+				}finally{
+					try {
+						this.finalize();
+					} catch (Throwable e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		Thread thread = new Thread(runnable);
+		thread.start();
 	}
 
 }
