@@ -16,6 +16,7 @@ import org.controlsfx.control.action.Action;
 import org.controlsfx.dialog.Dialog;
 import org.controlsfx.dialog.Dialogs;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,6 +33,7 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.control.cell.CheckBoxTreeCell;
 import javafx.scene.control.cell.CheckBoxTreeCellBuilder;
+import javafx.util.Callback;
 import condominio.Condominio;
 import condominio.core.administrativo.UsuarioCrud;
 import condominio.core.administrativo.funcionarios.FuncionariosCrud;
@@ -78,7 +80,7 @@ public class PrivilegiosFxController implements Initializable{
     }
     
     private void setarArvore() {
-    	CheckBoxTreeItem<String> rootItem = new CheckBoxTreeItem<String>("PRIVILÉGIOS");
+    	CheckBoxTreeItem<String> rootItem = new CheckBoxTreeItem<String>("PRIVILï¿½GIOS");
     	rootItem.getChildren().add(createDefaultItem(Privilegios.CADASTRO));
     	rootItem.getChildren().add(createDefaultItem(Privilegios.ACESSO));
     	rootItem.getChildren().add(createDefaultItem(Privilegios.PERMISSOES));
@@ -125,7 +127,7 @@ public class PrivilegiosFxController implements Initializable{
             .owner(null)
             .title("Cadastro")
             .masthead("Validador de Senha")
-            .message("Senhas não são idênticas!")
+            .message("Senhas nï¿½o sï¿½o idï¿½nticas!")
             .showInformation();
     		return;
     	}
@@ -136,7 +138,7 @@ public class PrivilegiosFxController implements Initializable{
             .owner(null)
             .title("Cadastro")
             .masthead("Erro ao salvar")
-            .message("Selecione um Funcionário")
+            .message("Selecione um Funcionï¿½rio")
             .showInformation();
     		return;
     	}
@@ -154,17 +156,36 @@ public class PrivilegiosFxController implements Initializable{
 		}
     	
     	user.setPrivilegios(prvList);
-    	USUARIO savedUser = uCrud.create(user);
-    	if(savedUser!= null){
-    		Dialogs.create()
-            .owner(null)
-            .title("Cadastro")
-            .masthead("Usuario "+ user.getUsuario())
-            .message("Cadastro realizado com sucesso!")
-            .showInformation();
-       		listarUsuarios();
-    		limpar();    	    		
-    	}
+    	main.carregando(true);
+    	uCrud.create(user, new Callback<USUARIO, Void>() {
+			
+			@Override
+			public Void call(USUARIO param) {
+				Platform.runLater(salvoComSucesso(param));
+				return null;
+			}
+
+			private Runnable salvoComSucesso(USUARIO param) {
+				return new Runnable() {
+					
+					@Override
+					public void run() {
+						main.carregando(false);
+						if(param == null){
+							return;
+						}
+						Dialogs.create()
+			            .owner(null)
+			            .title("Cadastro")
+			            .masthead("Usuario "+ user.getUsuario())
+			            .message("Cadastro realizado com sucesso!")
+			            .showInformation();
+			       		listarUsuarios();
+			    		limpar();  
+					}
+				};
+			}
+		});    	
     }
 	
 	public void cancelarCadastro(ActionEvent ev){
@@ -174,8 +195,8 @@ public class PrivilegiosFxController implements Initializable{
 	public void removerUsuario(){
 		USUARIO user = listaUsuarios.getSelectionModel().getSelectedItem();
 		Action response = Dialogs.create().owner(null).title("Confirmar")
-		        .masthead("Remover Usuário")
-		        .message("Você tem certeza que deseja remover?")
+		        .masthead("Remover Usuï¿½rio")
+		        .message("Vocï¿½ tem certeza que deseja remover?")
 		        .showConfirm();
 		if(response == Dialog.Actions.YES){
 			uCrud.removerUsuario(user);

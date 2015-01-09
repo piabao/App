@@ -183,7 +183,7 @@ public class PortariaFxController implements Initializable{
 	public void cadastrar(ActionEvent e){
         CADASTRO_MORADOR morador = new CADASTRO_MORADOR();
         if(identificacao.getText().isEmpty() || nome.getText().isEmpty()){
-        	Dialogs.create().title("Cadastro de Moradores").message("Preencha o campo Identificação e Nome").showError();
+        	Dialogs.create().title("Cadastro de Moradores").message("Preencha o campo IdentificaÃ§Ã£o e Nome").showError();
         	return;
         }
         if(moradorEmEdicao!= null){
@@ -229,7 +229,7 @@ public class PortariaFxController implements Initializable{
 		for(VEICULOS vei : pCrud.getVeiculosByMorador(idMorador.getIdentificador())){
 			boolean remove = true;
 			for (VEICULOS veiculo : veiculosMap.values()) {
-				//Se não encontrar na lista algum item ja salvo, remove
+				//Se nï¿½o encontrar na lista algum item ja salvo, remove
 	        	if(veiculo.getId() != null && vei.getId().compareTo(veiculo.getId()) == 0){
 	        		 remove = false;
 	        		 continue;
@@ -250,7 +250,7 @@ public class PortariaFxController implements Initializable{
 		for(TELEFONES tel : pCrud.getTelefonesByIdMorador(idMorador.getId())){
 			boolean remove = true;
 			for (TELEFONES telefone : telefonesMap.values()) {
-				//Se não encontrar na lista algum item ja salvo, remove
+				//Se nï¿½o encontrar na lista algum item ja salvo, remove
 	        	if(telefone.getId() != null && tel.getId().compareTo(telefone.getId()) == 0){
 	        		 remove = false;
 	        		 continue;
@@ -271,7 +271,7 @@ public class PortariaFxController implements Initializable{
 		for(ANIMAIS anm : pCrud.getAnimaisByMorador(idMorador.getIdentificador())){
         	boolean remove = true;
         	for (ANIMAIS animal : animaisMap.values()) {
-        		//Se não encontrar na lista algum item ja salvo, remove
+        		//Se nao encontrar na lista algum item ja salvo, remove
 	        	if(animal.getId() != null && anm.getId().compareTo(animal.getId()) == 0){
 	        		 remove = false;
 	        		 continue;

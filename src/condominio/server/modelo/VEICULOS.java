@@ -111,7 +111,7 @@ public class VEICULOS implements Serializable {
     }
     
     public String getAtribNames() {
-		return "cor, id, idMorador, modelo, placa, tipo, visitante".toUpperCase();
+		return "cor, id, idmorador, modelo, placa, tipo, visitante".toUpperCase();
 	}
     
 }

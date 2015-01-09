@@ -52,6 +52,12 @@ public class PRIVILEGIOS implements Serializable{
 	}
     
     public String getAtribNames() {
-		return "id, descricao, permissao".toUpperCase();
+		return "id, descricao, idusuario, permissao".toUpperCase();
+	}
+	public int getPermissao() {
+		if(permissao){
+			return 1;
+		}
+		return 0;
 	}
 }

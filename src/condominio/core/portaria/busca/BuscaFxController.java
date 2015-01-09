@@ -27,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import condominio.Condominio;
 import condominio.core.login.Privilegios;
@@ -55,6 +56,8 @@ public class BuscaFxController implements Initializable{
     Button acesso;
     @FXML
     Button novaBusca;
+    @FXML
+    AnchorPane loading;
     
 	private Condominio main;
 	private PortariaCrud pCrud = new PortariaCrud();
@@ -63,7 +66,8 @@ public class BuscaFxController implements Initializable{
 	protected List<CADASTRO_MORADOR> resultadoList = new ArrayList<CADASTRO_MORADOR>();
    
     @Override
-    public void initialize(URL url, ResourceBundle rb) {  
+    public void initialize(URL url, ResourceBundle rb) {
+    	loading.setVisible(false);
     	autoComplete = (AutoCompletionTextFieldBinding<CADASTRO_MORADOR>) TextFields.bindAutoCompletion(busca, resultadoList);
     	detalhes.setStyle("-fx-font-weight: bold;"+
     						"-fx-font-size: 16;");
@@ -77,11 +81,12 @@ public class BuscaFxController implements Initializable{
     	    		autoComplete.hidePopup();
     	    		return;
     	    	}
-    	    	
+    	    	loading.setVisible(true);
     	    	pCrud.searchMorador(newValue, new Callback<List<CADASTRO_MORADOR>, Void>() {
 					
 					@Override
 					public Void call(List<CADASTRO_MORADOR> result) {
+						loading.setVisible(false);
 						resultadoList = result;
 				    	    	if(resultadoList.isEmpty()){
 				    	    		autoComplete.hidePopup();
@@ -167,6 +172,7 @@ public class BuscaFxController implements Initializable{
 	}
 	
 	public void configuraPermissao() {
+		editar.setDisable(!Privilegios.getPermissoes().get(Privilegios.EDITA_CADASTRO));
 		acesso.setDisable(!Privilegios.getPermissoes().get(Privilegios.VISUALIZA_ACESSO));
 	}
     

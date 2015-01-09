@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import condominio.Condominio;
 import condominio.core.administrativo.UsuarioCrud;
 import condominio.server.modelo.USUARIO;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,7 +47,7 @@ public class LoginController extends AnchorPane implements Initializable {
         errorMessage.setText("");
     }
 
-    public void processLogin(ActionEvent event) {
+    public void processLogin(ActionEvent event) {			
     	USUARIO usuario = userCrud.processaLogin(userId.getText());
     	if(usuario.getUsuario() == null || usuario.getUsuario().isEmpty()){
     		errorMessage.setText("Usuario inexistente " + userId.getText());

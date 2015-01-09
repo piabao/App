@@ -3,6 +3,7 @@ package condominio.core.administrativo;
 import java.sql.SQLException;
 import java.util.List;
 
+import javafx.util.Callback;
 import condominio.server.modelo.PRIVILEGIOS;
 import condominio.server.modelo.USUARIO;
 import condominio.server.modelo.dao.PrivilegiosJpaController;
@@ -25,12 +26,11 @@ public class UsuarioCrud {
 		privilegio = new PrivilegiosPhpController();
 	}
 
-	public USUARIO create(USUARIO user) {
+	public void create(USUARIO user, Callback<USUARIO, Void> call) {
 		try {
-			return usuario.create(user);
+			usuario.create(user, call);	
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return null;
 		}
 	}
 
@@ -53,7 +53,7 @@ public class UsuarioCrud {
 
 	public void removerUsuario(USUARIO user) {
 		try {
-			usuario.destroy(user.getId());
+			usuario.destroy(user);			
 		} catch (NonexistentEntityException e) {
 			e.printStackTrace();
 		}

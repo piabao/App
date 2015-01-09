@@ -14,6 +14,7 @@ import condominio.core.administrativo.relatorios.RelatorioCadastroFxController;
 import condominio.core.login.LoginController;
 import condominio.core.portaria.PortariaFxController;
 import condominio.core.portaria.busca.BuscaFxController;
+import condominio.core.utils.CarregandoModal;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,11 +30,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 /**
@@ -45,6 +48,7 @@ public class Condominio extends Application {
     private Stage stage;
     private FXMLLoader loader;
     private AnchorPane page;
+    private CarregandoModal carregando;
     public Map<AnchorPane, PortariaFxController> cadastro = new HashMap<AnchorPane, PortariaFxController>();
     public Map<AnchorPane, RelatorioCadastroFxController> relatorios = new HashMap<AnchorPane, RelatorioCadastroFxController>();
 	public Map<AnchorPane, BuscaFxController> busca = new HashMap<AnchorPane, BuscaFxController>();
@@ -102,6 +106,19 @@ public class Condominio extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+    
+    public void carregando(boolean sim){
+    	if(carregando == null){
+    		Node window = stage.getScene().getRoot();
+    		stage.centerOnScreen();
+    		carregando = new CarregandoModal(window);    		
+    	}
+    	if(sim){
+    		carregando.show();
+    	}else{
+    		carregando.hide();
+    	}
     }
 
     public void carregarPrimeiraPagina() {

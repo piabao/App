@@ -23,7 +23,7 @@ public class AnimaisPhpController {
 	}
 
 	private String getValues(ANIMAIS val) {
-		return "'"+val.getCor()+"', '"+val.getId()+"', '"+val.getIdMorador()+"', '"+val.getNome()+"', '"+val.getPorte()+"', '"+val.getTipo()+"'";
+		return "'"+val.getCor()+"', '"+val.getId()+"', '"+val.getIdMorador()+"', '"+val.getNome()+"', '"+val.getPorte()+"'";
 	}
 
 	private String getEditValues(ANIMAIS val) {

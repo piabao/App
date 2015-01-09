@@ -84,6 +84,6 @@ public class TELEFONES implements Serializable {
     }
     
     public String getAtribNames() {
-		return "id, idMorador, numero, operadora".toUpperCase();
+		return "id, idmorador, numero, operadora".toUpperCase();
 	}    
 }

@@ -58,8 +58,7 @@ public class CadastroMoradorPhpController {
 	}
 
 	private String getValues(CADASTRO_MORADOR val) {
-		return "'"+val.getCpf()+"', '"+val.getEmail()+"', '"+val.getId()+"', '"+val.getIdentificador()+"', '"+val.getNome()+"', '"+"', '"+val.getObservacao()+"', '"+val.getTipo_morador()+"', '"+val.getVaga()+"'";
-		
+		return "'"+val.getCpf()+"', '"+val.getEmail()+"', '"+val.getId()+"', '"+val.getIdentificador()+"', '"+val.getNome()+"', '"+val.getObservacao()+"', '"+val.getTipo_morador()+"', '"+val.getVaga()+"'";
 	}
 
 	public List<CADASTRO_MORADOR> searchMoradoresByID(String value) {

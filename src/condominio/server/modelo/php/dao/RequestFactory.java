@@ -10,6 +10,8 @@ import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
+
 import javafx.util.Callback;
 
 public class RequestFactory {
@@ -21,8 +23,8 @@ public class RequestFactory {
 	
 	public static String carregarUrl = "http://www.moradaspalhoca2.com/morp2/carregarObjs.php";
 	public static String salvarUrl = "http://www.moradaspalhoca2.com/morp2/salvarObj.php";
-	public static String editarUrl = "http://www.moradaspalhoca2.com/morp2/editarObj.php";
-	public static String removerUrl = "http://www.moradaspalhoca2.com/morp2/removerObj.php";
+	public static String editarUrl = "http://www.moradaspalhoca2.com/morp2/editarObjs.php";
+	public static String removerUrl = "http://www.moradaspalhoca2.com/morp2/removerObjs.php";
 	
 	public RequestFactory(String url, String... args){
 		this.url = url;
@@ -67,6 +69,7 @@ public class RequestFactory {
 	        // Send post request
 	        con.setDoOutput(true);
 	        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+	        System.out.println(urlParameters.toString());
 	        wr.writeBytes(urlParameters.toString());
 	        wr.flush();
 	        wr.close();	        

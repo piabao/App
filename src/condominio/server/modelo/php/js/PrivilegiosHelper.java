@@ -47,7 +47,7 @@ public class PrivilegiosHelper {
 		if(object == null){
 			return valor;
 		}
-		if(Integer.parseInt(object.toString()) == 0){
+		if(Integer.parseInt(object.toString()) == 1){
 			valor = true;
 		}
 		return valor;

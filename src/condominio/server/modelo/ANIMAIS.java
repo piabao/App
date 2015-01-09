@@ -102,7 +102,7 @@ public class ANIMAIS implements Serializable {
     }
     
     public String getAtribNames() {
-		return "cor, id, idMorador, nome, porte, raca".toUpperCase();
+		return "cor, id, idmorador, nome, porte, raca".toUpperCase();
 	}
     
 }
